@@ -47,6 +47,9 @@ public class RecipeServiceImpl implements RecipeService {
                 .getForEntity("/recipes/{recipeId}/information?includeNutrition=true", RecipeInformation.class, recipeId)
                 .getBody();
 
+        if (recipe == null) {
+            throw new RuntimeException("Recipe not found");
+        }
 
         recipe.totalCalories = getCaloriesForRecipe(recipe, removeIngredients);
         return recipe;
@@ -58,7 +61,7 @@ public class RecipeServiceImpl implements RecipeService {
         return recipe.nutrition.ingredients.stream()
                 .filter(ingredient -> !execludedIds.contains(ingredient.id))
                 .flatMap(ingredient -> ingredient.nutrients.stream()
-                        .filter(nutrient -> nutrient.name().toLowerCase().equals("calories"))
+                        .filter(nutrient -> nutrient.name().equalsIgnoreCase("calories"))
                         .map(Nutrient::amount))
                 .reduce(0D, Double::sum);
     }

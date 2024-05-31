@@ -1,0 +1,25 @@
+GET http://localhost:8080/api/v1/recipes/1
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 0
+
+<> 2024-05-30T010317.500.json
+
+###
+
+GET http://localhost:8080/api/v1/recipes?query=pizza
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 0
+
+<> 2024-05-30T010253.500.json
+
+###
+
+###
+GET http://localhost:8080/api/v1/recipes/1?excludedIngredients=15001
+
+<> 2024-06-01T021422.200.json
+<> 2024-06-01T021215.200.json
